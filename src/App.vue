@@ -18,10 +18,20 @@
         }, {});
 
     export default {
+        el: '#app',
         data: () => ({
-            layout: layouts['default'],
-            default: 'base'
-        })
+            layout: null,
+            defaultLayout: 'default'
+        }),
+        methods: {
+            setLayout(layout) {
+                if (!layout || !layouts[layout]) {
+                    this.layout = this.defaultLayout
+                }
+                console.log(1);
+                this.layout = layouts[layout]
+            }
+        }
     }
 </script>
 

@@ -22,5 +22,14 @@ function createRouter() {
         base: process.env.BASE_URL,
         routes
     });
+    router.beforeEach(beforeEach);
     return router;
+}
+
+async function beforeEach(to, from, next) {
+    const oauth = ['/login', '/register'];
+    let layout = !oauth.indexOf(to.path) ? 'base' : '';
+    console.log(router.app.$refs.setLayout(layout));
+    // console.log(from);
+    return next();
 }
